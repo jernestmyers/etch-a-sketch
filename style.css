@@ -6,22 +6,11 @@
     width: 500px;
 }
 
-.grids-rows {
+.grids {
     background-color: black;
-    width: 20px;
-    height: 20px;
     padding: 0px;
     margin: 0px;
     border: 0px;
-}
-
-.grids-columns {
-    background-color: red;
-    width: 20px;
-    height: 20px;
-    padding: 0px;
-    margin: 0px;
-    border: 0px;  
 }
 
 h1 {
