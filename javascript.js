@@ -23,10 +23,21 @@ function gridTemplate(rows) {
     gridContainer.setAttribute('style', `grid-template-rows: ${frs}; grid-template-columns: ${frs}`);
 }
 
+let isDrawing = false;
 function changeColors(grids) {
-    grids.addEventListener(`mouseover`, function(event) {
-        grids.setAttribute(`style`, `background-color: white`);
-    })
+    window.addEventListener(`mouseup`, function(event) {
+        isDrawing = false;
+        break
+    });
+    gridContainer.addEventListener(`mousedown`, function(event) {
+        isDrawing = true;
+        if (isDrawing === true) {
+            grids.addEventListener(`mouseover`, function(event) {
+                grids.setAttribute(`style`, `background-color: white`);
+            });
+        }
+        // if (isDrawing === true) {
+           
+        // }
+    });
 }
-
-
