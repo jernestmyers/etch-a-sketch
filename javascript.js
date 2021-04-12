@@ -1,6 +1,7 @@
 
 const gridContainer = document.querySelector(`.grid-container`);
 const gridContainerWidth = gridContainer.clientWidth
+let isDrawing = false;
 
 // creates a string of '1fr' based on number of rows
 // adds string to grid-template to determine CSS grid config
@@ -23,17 +24,11 @@ function createGrid(rows) {
         grids.classList.add('grids');
         gridContainer.appendChild(grids);
         grids.setAttribute('style', `width: ${gridsDimensions}px; height: ${gridsDimensions}px`);
-        grids.addEventListener(`mouseover`, function(event) {
-            grids.setAttribute(`style`, `background-color: black`);
-            });
-        // changeColors(isDrawing);
-        // window.addEventListener(`mouseup`, function(event) {
-        //     if (isDrawing === true) {
-        //         isDrawing = false;
-        //         changeColors(grids, isDrawing);
-        //         console.log(`up`);
-        //     }
-        // });
+        grids.addEventListener('mouseover', () => {
+            if (isDrawing === true) {
+                grids.setAttribute(`style`, `background-color: black`);
+            }
+        })
     }
     gridTemplate(rows);
 }
@@ -74,60 +69,13 @@ gridSlider.addEventListener('change', () => {
     inputDiv.appendChild(numbersOfRowsSelected);
 })
 
-// let isDrawing = false;
-// function changeColors(grids, condition) {
-//     gridContainer.addEventListener(`mousedown`, function(event) {
-//         isDrawing = true;
-//         if (isDrawing === true) {
-//             grids.addEventListener(`mouseover`, function(event) {
-//             grids.setAttribute(`style`, `background-color: black`);
-//             });
-//     }
-// });
-// }
 
-// window.addEventListener(`mouseup`, function(event) {
-//     if (isDrawing === true) {
-//         isDrawing = false;
-//         changeColors(grids, isDrawing);
-//     }
-// });
+gridContainer.addEventListener(`mousedown`, () => {
+    isDrawing = true;
+});
 
-
-// mousedown begins the sketching
-// mousedown && mouseover continues sketching
-// mouseup stops the sketching
-
-// let isDrawing = false;
-// let gridIndex;
-// const gridsCreated = document.querySelectorAll(`.grids`);
-// let gridsArray = [];
-// for(let i = gridsCreated.length; i--; gridsArray.unshift(gridsCreated[i]));
-
-
-// gridsCreated.forEach((gridsCreated) => {
-// gridsCreated.addEventListener(`mousedown`, e => {
-//     isDrawing = true;
-// });
-// });
-
-// gridsCreated.forEach((gridsCreated) => {
-// gridsCreated.addEventListener(`mouseover`, e => {
-//     if (isDrawing === true) {
-//         gridIndex = gridsCreated.index;
-//         console.log(gridIndex);
-//         changeColors(gridIndex);
-//     }
-// });
-// });
-
-// window.addEventListener(`mouseup`, e => {
-//     if (isDrawing === true) {
-//         changeColors(gridIndex);
-//         isDrawing = false;
-//     }
-// });
-
-// function changeColors(index) {
-//     gridsCreated.setAttribute(`style`, `background-color: black`);
-// }
+window.addEventListener(`mouseup`, () => {
+    if (isDrawing === true) {
+        isDrawing = false;
+    }
+});
