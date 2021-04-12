@@ -1,7 +1,25 @@
 
 const gridContainer = document.querySelector(`.grid-container`);
 const gridContainerWidth = gridContainer.clientWidth
+let colorSelectorBackground = document.querySelector(`#backgroundColor`);
+let colorSelectorDrawing = document.querySelector(`#userColor`);
+let colorUser = colorSelectorDrawing.value;
+let colorBackground = colorSelectorBackground.value;
 let isDrawing = false;
+
+// updates colorUser according to the change in the color well
+colorSelectorDrawing.addEventListener(`change`, () => {
+    colorUser = colorSelectorDrawing.value;
+    resetEraser();
+})
+
+// re-creates grid according to background color choice
+colorSelectorBackground.addEventListener(`change`, () => {
+    colorBackground = colorSelectorBackground.value;
+    resetEraser();
+    resetGrid();
+    createGrid(gridSlider.value);
+})
 
 // creates a string of '1fr' based on number of rows
 // adds string to grid-template to determine CSS grid config
@@ -23,12 +41,15 @@ function createGrid(rows) {
         const grids = document.createElement(`div`);
         grids.classList.add('grids');
         gridContainer.appendChild(grids);
-        grids.setAttribute('style', `width: ${gridsDimensions}px; height: ${gridsDimensions}px`);
+        grids.setAttribute('style', `background-color: ${colorBackground}; width: ${gridsDimensions}px; height: ${gridsDimensions}px`);
         grids.addEventListener('mouseover', () => {
             if (isDrawing === true) {
-                grids.setAttribute(`style`, `background-color: black`);
+                grids.setAttribute(`style`, `background-color: ${colorUser}`);
             }
-        })
+        });
+        grids.addEventListener('mousedown', () => {
+                grids.setAttribute(`style`, `background-color: ${colorUser}`);
+        });
     }
     gridTemplate(rows);
 }
@@ -62,8 +83,11 @@ confirmClear.addEventListener('click', () => {
     createGrid(gridSlider.value);
 })
 
+// displays the default grid size and updates display as slider changes
 const inputDiv = document.querySelector(`.user-inputs`);
 const numbersOfRowsSelected = document.createElement('p');
+numbersOfRowsSelected.textContent = `16 x 16`;
+inputDiv.appendChild(numbersOfRowsSelected);
 gridSlider.addEventListener('change', () => {
     numbersOfRowsSelected.textContent = `${gridSlider.value} x ${gridSlider.value} grid`;
     inputDiv.appendChild(numbersOfRowsSelected);
@@ -79,3 +103,23 @@ window.addEventListener(`mouseup`, () => {
         isDrawing = false;
     }
 });
+
+// toggles eraser button on and off
+let eraserOn;
+const labelEraser = document.querySelector(`#labelEraser`);
+eraser.addEventListener('click', () => {
+        if (eraserOn !== true) {
+            labelEraser.textContent = `eraser: on`;
+            colorUser = colorSelectorBackground.value;
+            eraserOn = true;
+        } else if (eraserOn === true) {
+            labelEraser.textContent = `eraser: off`;
+            colorUser = colorSelectorDrawing.value;
+            eraserOn = false;
+        } 
+    })
+function resetEraser() {
+    labelEraser.textContent = `eraser: off`;
+    colorUser = colorSelectorDrawing.value;
+    eraserOn = false;
+}
