@@ -84,9 +84,10 @@ confirmClear.addEventListener('click', () => {
 })
 
 // displays the default grid size and updates display as slider changes
-const inputDiv = document.querySelector(`.user-inputs`);
+const inputDiv = document.querySelector(`#gridSize-container`);
 const numbersOfRowsSelected = document.createElement('p');
-numbersOfRowsSelected.textContent = `16 x 16`;
+numbersOfRowsSelected.textContent = `16 x 16 grid`;
+numbersOfRowsSelected.setAttribute('id', 'grid-size-label');
 inputDiv.appendChild(numbersOfRowsSelected);
 gridSlider.addEventListener('change', () => {
     numbersOfRowsSelected.textContent = `${gridSlider.value} x ${gridSlider.value} grid`;
