@@ -1,4 +1,3 @@
-
 const gridContainer = document.querySelector(`.grid-container`);
 const gridContainerWidth = gridContainer.clientWidth
 let colorSelectorBackground = document.querySelector(`#backgroundColor`);
