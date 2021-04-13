@@ -97,7 +97,6 @@ confirmClear.addEventListener('click', () => {
 const inputDiv = document.querySelector(`#grid-size-label`);
 const numbersOfRowsSelected = document.createElement('p');
 numbersOfRowsSelected.textContent = `16 x 16 grid`;
-// numbersOfRowsSelected.setAttribute('id', 'grid-size-label');
 inputDiv.appendChild(numbersOfRowsSelected);
 gridSlider.addEventListener('change', () => {
     numbersOfRowsSelected.textContent = `${gridSlider.value} x ${gridSlider.value} grid`;
