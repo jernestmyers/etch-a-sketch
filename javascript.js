@@ -37,7 +37,6 @@ function gridTemplate(rows) {
 // attaches a listener to each created grid
 function createGrid(rows) {
     const gridsDimensions = (gridContainerWidth / rows);
-
     for (let i = 0; i < rows*rows; i++) {
         const grids = document.createElement(`div`);
         grids.classList.add('grids');
@@ -95,10 +94,10 @@ confirmClear.addEventListener('click', () => {
 })
 
 // displays the default grid size and updates display as slider changes
-const inputDiv = document.querySelector(`#gridSize-container`);
+const inputDiv = document.querySelector(`#grid-size-label`);
 const numbersOfRowsSelected = document.createElement('p');
 numbersOfRowsSelected.textContent = `16 x 16 grid`;
-numbersOfRowsSelected.setAttribute('id', 'grid-size-label');
+// numbersOfRowsSelected.setAttribute('id', 'grid-size-label');
 inputDiv.appendChild(numbersOfRowsSelected);
 gridSlider.addEventListener('change', () => {
     numbersOfRowsSelected.textContent = `${gridSlider.value} x ${gridSlider.value} grid`;
