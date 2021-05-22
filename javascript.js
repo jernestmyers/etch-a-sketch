@@ -41,20 +41,21 @@ function createGrid(rows) {
         grids.classList.add('grids');
         gridContainer.appendChild(grids);
         grids.setAttribute('style', `background-color: ${colorBackground}; width: ${gridsDimensions}px; height: ${gridsDimensions}px`);
-        grids.addEventListener('mouseover', () => {
+        
+        gridContainer.addEventListener('mouseover', (e) => {
             if (isDrawing === true && randomOn !== true) {
-                grids.setAttribute(`style`, `background-color: ${colorUser}`);
+                e.target.setAttribute(`style`, `background-color: ${colorUser}`);
             } else if (isDrawing === true && randomOn === true) {
                 randomizesRGB();
-                grids.setAttribute(`style`, `background-color: ${colorUser}`);
+                e.target.setAttribute(`style`, `background-color: ${colorUser}`);
             }
         });
-        grids.addEventListener('mousedown', () => {
+        gridContainer.addEventListener('mousedown', (e) => {
             if (randomOn !== true) {
-                grids.setAttribute(`style`, `background-color: ${colorUser}`);
+                e.target.setAttribute(`style`, `background-color: ${colorUser}`);
             } else if (randomOn === true) {
                 randomizesRGB();
-                grids.setAttribute(`style`, `background-color: ${colorUser}`);
+                e.target.setAttribute(`style`, `background-color: ${colorUser}`);
             }
         });
     }
